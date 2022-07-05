@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>oculus_sonar</name>
+  <name>oculus_ros2</name>
   <version>0.0.1</version>
   <description>ROS node for BluePrint subsea Oculus sonar</description>
 
@@ -21,10 +21,9 @@
   <exec_depend>std_msgs</exec_depend>
   <build_depend>message_generation</build_depend>
   <exec_depend>message_runtime</exec_depend>
-
-  <build_depend>rosidl_default_generators</build_depend>
-  <exec_depend>rosidl_default_runtime</exec_depend>
-  <member_of_group>rosidl_interface_packages</member_of_group>
+  
+  <depend>oculus_interfaces</depend>
+  <depend>oculus_driver</depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>

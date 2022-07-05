@@ -1,6 +1,16 @@
 cmake_minimum_required(VERSION 3.10)
-project(narval_oculus VERSION 0.1)
+project(oculus_driver VERSION 0.1)
 
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 17)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic -ggdb3)
+endif()
+
+# find dependencies
+find_package(ament_cmake REQUIRED)
 find_package(Boost COMPONENTS system thread REQUIRED)
 message(STATUS "Boost version  : ${Boost_VERSION}")
 message(STATUS "Boost location : ${Boost_INCLUDE_DIRS}")
@@ -38,10 +48,28 @@ target_link_libraries(narval_oculus PUBLIC
 )
 target_compile_features(narval_oculus PUBLIC cxx_std_17)
 
-include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/narval_installation.cmake)
-narval_install_target(narval_oculus)
+# include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/narval_installation.cmake)
+# narval_install_target(narval_oculus)
 
 # add_subdirectory(tools)
 add_subdirectory(tests)
+
+install(DIRECTORY include/narval_oculus/ DESTINATION include/${PROJECT_NAME})
+install(TARGETS narval_oculus
+    EXPORT narval_oculus
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+)
+
+ament_export_include_directories(include)
+ament_export_libraries(
+    narval_oculus
+)
+ament_export_targets(
+    narval_oculus
+)
+
+ament_package()
 
 
