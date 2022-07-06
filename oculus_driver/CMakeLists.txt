@@ -6,14 +6,17 @@ if(NOT CMAKE_CXX_STANDARD)
 endif()
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
-  add_compile_options(-Wall -Wextra -Wpedantic -ggdb3)
+  add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(Boost COMPONENTS system thread REQUIRED)
+find_package(Boost 1.71.0 COMPONENTS system thread REQUIRED)
 message(STATUS "Boost version  : ${Boost_VERSION}")
-message(STATUS "Boost location : ${Boost_INCLUDE_DIRS}")
+message(STATUS "Boost include location : ${Boost_INCLUDE_DIRS}")
+message(STATUS "Link directories for Boost libraries location : ${Boost_LIBRARY_DIRS}")
+message(STATUS "Boost component libraries to be linked location : ${Boost_LIBRARIES}")
+
 
 list(APPEND narval_oculus_headers
     include/narval_oculus/Oculus.h
@@ -41,10 +44,12 @@ set_target_properties(narval_oculus PROPERTIES
 target_include_directories(narval_oculus PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
+    ${Boost_INCLUDE_DIRS}
 )
 target_link_libraries(narval_oculus PUBLIC
-    Boost::system
-    Boost::thread
+    ${Boost_LIBRARIES}
+    # Boost::system
+    # Boost::thread
 )
 target_compile_features(narval_oculus PUBLIC cxx_std_17)
 
@@ -62,7 +67,7 @@ install(TARGETS narval_oculus
     RUNTIME DESTINATION bin
 )
 
-ament_export_include_directories(include)
+ament_export_include_directories(include) 
 ament_export_libraries(
     narval_oculus
 )
