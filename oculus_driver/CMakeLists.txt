@@ -59,7 +59,7 @@ target_compile_features(narval_oculus PUBLIC cxx_std_17)
 # add_subdirectory(tools)
 add_subdirectory(tests)
 
-install(DIRECTORY include/narval_oculus/ DESTINATION include/${PROJECT_NAME})
+install(DIRECTORY include/narval_oculus/ DESTINATION include/narval_oculus/)
 install(TARGETS narval_oculus
     EXPORT narval_oculus
     LIBRARY DESTINATION lib
