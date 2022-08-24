@@ -1,7 +1,7 @@
 #ifndef _DEF_NARVAL_OCULUS_ROS_CONVERSIONS_H_
 #define _DEF_NARVAL_OCULUS_ROS_CONVERSIONS_H_
 
-#include <oculus_driver/Oculus.h>
+#include <narval_oculus/Oculus.h>
 #include "oculus_interfaces/msg/oculus_header.hpp"
 #include "oculus_interfaces/msg/oculus_version_info.hpp"
 #include "oculus_interfaces/msg/oculus_status.hpp"
