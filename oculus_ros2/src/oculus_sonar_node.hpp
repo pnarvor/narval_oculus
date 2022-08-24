@@ -7,8 +7,8 @@
 
 #include "conversions.h"
 
-#include <oculus_driver/AsyncService.h>
-#include <oculus_driver/SonarDriver.h>
+#include <narval_oculus/AsyncService.h>
+#include <narval_oculus/SonarDriver.h>
 
 #include "oculus_interfaces/msg/oculus_status.hpp"
 #include "oculus_interfaces/msg/oculus_stamped_ping.hpp"
